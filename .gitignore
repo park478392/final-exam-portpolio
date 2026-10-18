@@ -1,0 +1,10 @@
+**/node_modules/
+**/.next/
+**/.backups/
+**/.env*
+!**/.env.example
+**/*.tsbuildinfo
+**/.vercel/
+**/*.log
+**/.DS_Store
+/1학기 기말 포트폴리오/
