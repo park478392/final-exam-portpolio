@@ -5,7 +5,7 @@ import { connectDB } from '@/lib/mongodb'
 import { User } from '@/models/User'
 
 function getRole(email?: string | null): 'admin' | 'user' {
-  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase()
+  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase() || 'park478392@gmail.com'
   return adminEmail && email?.trim().toLowerCase() === adminEmail ? 'admin' : 'user'
 }
 
