@@ -3,6 +3,16 @@
 :root {
   color-scheme: light;
 }
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-ink: #181a1e;
+  --color-card: #21242a;
+  --color-stroke: #41454e;
+  --color-accent: #efa98b;
+  --color-surface: #2b2e36;
+  --color-slate-300: #c4c1bb;
+  --color-rose-300: #ffa2ab;
+}
 @theme {
   --color-ink: #f7f5f0;
   --color-card: #fffefa;
@@ -231,6 +241,45 @@ summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 
 .semester-tabs button { cursor: pointer; border-radius: 5px; padding: 10px 24px; border: 1px solid var(--color-stroke); background: #fffefa; color: #57534c; }
 .semester-tabs button[aria-pressed="true"] { color: #fffefa; background: #934631; border-color: #934631; }
 button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+.theme-toggle { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid var(--color-stroke); border-radius: 6px; cursor: pointer; white-space: nowrap; background: var(--color-card); color: inherit; font-size: 12px; }
+.theme-toggle:hover { background: var(--color-surface); }
+.home-sites { padding-top: 32px; padding-bottom: 36px; border-top: 1px solid var(--color-stroke); border-bottom: 1px solid var(--color-stroke); }
+.home-sites .section-title { font-size: clamp(22px, 3vw, 28px); }
+.skip-link { position: fixed; top: 12px; left: 16px; z-index: 100; padding: 12px 18px; background: var(--color-card); color: var(--color-accent); border: 1px solid var(--color-stroke); border-radius: 6px; transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+.button:disabled { cursor: wait; opacity: .65; }
+.project-actions { flex-wrap: wrap; }
+.tidy-project, .site-header-inner > *, .lesson-list article > div { min-width: 0; }
+.button { text-align: center; }
+@media (max-width: 1050px) and (min-width: 801px) {
+  .site-header-inner { gap: 16px; }
+  .site-header-inner > a > .muted { display: none; }
+  .main-nav { gap: 18px; }
+}
+@media (max-width: 560px) {
+  .site-header-inner { gap: 12px; padding-top: 14px; }
+  .site-header-inner > a > .muted { display: none; }
+  .site-header-inner > .flex { gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  .site-header-inner > .flex > .muted { display: none; }
+  .main-nav { margin-top: 0; gap: 22px; }
+  .theme-toggle { padding: 7px 9px; }
+  .home-sites .section-heading { gap: 14px; }
+  .semester-tabs button { padding: 10px 18px; }
+}
+[data-theme="dark"] body { color: #eeeae4; }
+[data-theme="dark"] :is(.muted, .eyebrow, .main-nav a, .page-heading > p:last-child, .home-portrait figcaption span, .about-timeline article > p:last-child, .profile-caption > span, .skills-strip > span) { color: #bbb8b2; }
+[data-theme="dark"] .chip { color: #ddd9d2; background: var(--color-surface); }
+[data-theme="dark"] .button { background: #a6553b; color: #fffefa; }
+[data-theme="dark"] .button:hover { background: #bd674b; }
+[data-theme="dark"] .button-secondary { background: transparent; color: #eeeae4; border-color: #686b73; }
+[data-theme="dark"] .button-secondary:hover { background: var(--color-surface); }
+[data-theme="dark"] .field { background: var(--color-card); color: #eeeae4; border-color: #686b73; }
+[data-theme="dark"] :is(.home-portrait, .semester-story, .semester-tabs button) { background: var(--color-card); color: #eeeae4; }
+[data-theme="dark"] :is(.home-portrait::before, .profile-editorial, .profile-photo, .semester-story-second, .week-item[open] summary) { background: var(--color-surface); }
+[data-theme="dark"] .semester-tabs button[aria-pressed="true"] { background: #a6553b; color: #fffefa; border-color: #a6553b; }
+[data-theme="dark"] :is(.story-link, .skills-strip p span, .main-nav a[aria-current="page"], .main-nav a:hover) { color: var(--color-accent); }
+[data-theme="dark"] .chapter-number { color: #82705f; }
+[data-theme="dark"] ::selection { background: #72442f; color: #fffefa; }
 @media (max-width: 760px) {
   .portfolio-hero { grid-template-columns: 1fr; padding-top: 50px; padding-bottom: 50px; gap: 45px; }
   .profile-editorial { width: min(100%, 360px); justify-self: center; }

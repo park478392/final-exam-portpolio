@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { auth } from '@/auth'
 import { logoutAction } from '@/lib/actions'
 import { MainNav } from '@/components/MainNav'
+import { ThemeToggle } from '@/components/ThemeToggle'
 export async function SiteHeader() {
   const session = await auth()
   return (
@@ -12,10 +13,14 @@ export async function SiteHeader() {
         </Link>
         <MainNav />
         <div className="flex items-center gap-3 text-xs sm:text-sm">
+          <ThemeToggle />
           {session?.user ? (
+            <>
+            <span className="muted">{session.user.role === 'admin' ? '관리자' : '일반 사용자'}</span>
             <form action={logoutAction}>
               <button className="text-accent cursor-pointer">로그아웃</button>
             </form>
+            </>
           ) : (
             <Link className="text-accent" href="/login">
               로그인

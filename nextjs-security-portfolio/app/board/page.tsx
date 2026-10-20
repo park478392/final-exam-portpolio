@@ -1,8 +1,18 @@
 import Link from 'next/link'
 import { getPosts } from '@/lib/posts'
 import { auth } from '@/auth'
+import { RefreshBoardButton } from '@/components/RefreshBoardButton'
 export const dynamic = 'force-dynamic'
-export default async function Board() {
+export default async function Board({ searchParams }: {
+  searchParams: Promise<{ error?: string; deleted?: string }>
+}) {
+  const query = await searchParams
+  const errors: Record<string, string> = {
+    forbidden: '관리자만 글을 삭제할 수 있습니다.',
+    invalid: '올바르지 않은 게시글입니다.',
+    delete: '글을 삭제하지 못했습니다. 잠시 후 다시 시도해 주세요.',
+    missing: '이미 삭제되었거나 존재하지 않는 글입니다.',
+  }
   const [postResult, session] = await Promise.all([
     getPosts().then(posts => ({ posts, available: true })).catch(() => ({ posts: [], available: false })),
     auth(),
@@ -11,6 +21,10 @@ export default async function Board() {
   return (
     <section className="wrap py-20">
       <p className="eyebrow">공부한 내용과 의견</p>
+      {query.error && errors[query.error] && (
+        <p role="alert" className="panel p-4 mt-4 text-rose-300">{errors[query.error]}</p>
+      )}
+      {query.deleted === '1' && <p role="status" className="panel p-4 mt-4">글이 삭제되었습니다.</p>}
       <div className="flex flex-wrap gap-4 justify-between items-center mt-4">
         <h1 className="text-4xl font-extrabold">실습 게시판</h1>
         {session?.user ? (
@@ -27,7 +41,7 @@ export default async function Board() {
         실습 중 정리한 내용이나 프로젝트에 대한 의견을 남기는 공간입니다. 글은 누구나 읽을 수 있고, 작성하려면 로그인이 필요합니다.
       </p>
       <div className="grid gap-3">
-        {!available ? <div role="status" className="panel p-8 sm:p-12"><h2 className="font-bold text-xl">게시판 연결을 기다리고 있습니다.</h2><p className="muted leading-7 mt-3">현재 게시글을 불러올 수 없습니다. 잠시 후 다시 방문해 주세요. 프로젝트와 학습 기록은 계속 볼 수 있습니다.</p><div className="flex flex-wrap gap-3 mt-6"><Link href="/board" className="button button-secondary">다시 불러오기</Link><Link href="/learning" className="button">학습 기록 보기</Link></div></div> : posts.length ? (
+        {!available ? <div role="status" className="panel p-8 sm:p-12"><h2 className="font-bold text-xl">게시글을 불러오지 못했습니다.</h2><p className="muted leading-7 mt-3">연결이 원활하지 않습니다. 다시 불러오거나 잠시 후 방문해 주세요.</p><div className="flex flex-wrap gap-3 mt-6"><RefreshBoardButton /><Link href="/projects" className="button">프로젝트·기록 보기</Link></div></div> : posts.length ? (
           posts.map((p) => (
             <Link
               href={`/board/${p.id}`}

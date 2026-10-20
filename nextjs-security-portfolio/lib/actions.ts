@@ -4,6 +4,7 @@ import { signIn, signOut, auth } from '@/auth'
 import bcrypt from 'bcryptjs'
 import { connectDB } from '@/lib/mongodb'
 import { User } from '@/models/User'
+import { Post } from '@/models/Post'
 import { createPost } from '@/lib/posts'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -54,6 +55,27 @@ export async function loginAction(data: FormData) {
 }
 export async function logoutAction() {
   await signOut({ redirectTo: '/' })
+}
+export async function deletePostAction(data: FormData) {
+  const session = await auth()
+  if (!session?.user) redirect('/login')
+  if (session.user.role !== 'admin') redirect('/board?error=forbidden')
+
+  const id = data.get('postId')
+  if (typeof id !== 'string' || !/^[a-f\d]{24}$/i.test(id)) {
+    redirect('/board?error=invalid')
+  }
+  let deleted = false
+  try {
+    await connectDB()
+    const result = await Post.deleteOne({ _id: id })
+    deleted = result.deletedCount === 1
+  } catch {
+    redirect('/board?error=delete')
+  }
+  revalidatePath('/board')
+  revalidatePath(`/board/${id}`)
+  redirect(deleted ? '/board?deleted=1' : '/board?error=missing')
 }
 export async function createPostAction(data: FormData) {
   const session = await auth()

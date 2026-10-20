@@ -20,8 +20,19 @@ export type Project = {
 }
 export const projects: Project[] = [
   {
-    slug: 'football-data',
+    slug: 'class-practice',
     number: '01',
+    title: '2학기 웹서버보안프로그래밍',
+    category: '수업 · 실습 사이트',
+    summary: 'React·Next.js와 MongoDB를 연결하며 웹 개발과 데이터베이스를 공부하는 수업 실습 사이트',
+    details: '웹서버보안프로그래밍 수업에서 작성한 실습 사이트입니다. React 상태 관리, Next.js 라우팅과 서버 액션을 익히고, MongoDB에 연결해 공지사항 데이터를 저장하고 조회하는 과정과 Auth.js 회원 인증을 공부하고 있습니다.',
+    stack: ['Next.js', 'React', 'TypeScript', 'MongoDB', 'Auth.js'],
+    features: ['클라이언트 컴포넌트 카운터', '상품 목록·상세·좋아요', 'Route Handler JSON 응답', '공지사항 게시판과 회원가입·로그인'],
+    status: '수업 실습 중',
+  },
+  {
+    slug: 'football-data',
+    number: '02',
     title: '축구 데이터 분석 웹',
     category: '멋쟁이사자처럼 14기 · 개인 프로젝트',
     summary:
@@ -39,7 +50,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'security-board',
-    number: '02',
+    number: '03',
     title: '보안 게시판',
     category: '데이터 저장 · 회원 인증',
     summary: 'MongoDB CRUD와 회원 인증을 결합한 포트폴리오 실습 게시판',
@@ -56,7 +67,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'portfolio',
-    number: '03',
+    number: '04',
     title: '개인 개발 포트폴리오',
     category: '화면 구성 · 라우팅',
     summary: '두 학기의 실습과 동아리 프로젝트를 정리한 개인 웹사이트',

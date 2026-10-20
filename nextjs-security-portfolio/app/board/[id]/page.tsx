@@ -1,6 +1,8 @@
 import { getPost } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { auth } from '@/auth'
+import { DeletePostButton } from '@/components/DeletePostButton'
 export const dynamic = 'force-dynamic'
 export default async function PostPage({
   params,
@@ -8,7 +10,7 @@ export default async function PostPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const p = await getPost(id)
+  const [p, session] = await Promise.all([getPost(id), auth()])
   if (!p) notFound()
   return (
     <section className="wrap max-w-4xl py-20">
@@ -23,6 +25,7 @@ export default async function PostPage({
       <div className="panel p-8 whitespace-pre-wrap leading-8 min-h-64">
         {p.content}
       </div>
+      {session?.user?.role === 'admin' && <DeletePostButton postId={p.id} />}
     </section>
   )
 }

@@ -3,6 +3,7 @@ const path = require('node:path')
 
 const portfolio = path.resolve(__dirname, '..')
 const football = path.resolve(portfolio, '../football-analysis')
+const classroom = path.resolve(portfolio, '../class-practice')
 const children = []
 let stopping = false
 
@@ -15,7 +16,7 @@ function stop(code = 0) {
   process.exitCode = code
 }
 
-for (const [cwd, port] of [[portfolio, '3000'], [football, '3001']]) {
+for (const [cwd, port] of [[portfolio, '3000'], [football, '3001'], [classroom, '3002']]) {
   let cli
   try {
     cli = require.resolve('next/dist/bin/next', { paths: [cwd] })

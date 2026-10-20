@@ -26,6 +26,7 @@ export default async function ProjectDetails({ params }: Props) {
     </div>
     <section className="mt-10 border-t border-stroke pt-8"><h2 className="text-xl font-bold mb-4">구현에서 다룬 내용</h2><p className="muted leading-8">{notes.focus}</p></section>
     <section className="mt-8"><h2 className="text-xl font-bold mb-4">현재 범위와 다음 과제</h2><p className="muted leading-8">{notes.next}</p></section>
+    {slug === 'class-practice' && <a className="button mt-8" href="http://localhost:3002" target="_blank" rel="noreferrer">2학기 수업 사이트 열기 ↗</a>}
     {slug === 'security-board' && <Link className="button mt-8" href="/board">게시판 열기 →</Link>}
     {slug === 'football-data' && <a className="button mt-8" href="http://localhost:3001" target="_blank" rel="noreferrer">축구 웹 열기 ↗</a>}
     {slug === 'portfolio' && <Link className="button mt-8" href="/projects#semester-1">학습 기록 읽기 →</Link>}
