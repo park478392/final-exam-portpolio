@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-const links = [{href:'/',label:'홈'},{href:'/about',label:'소개'},{href:'/projects',label:'프로젝트·기록'},{href:'/board',label:'게시판'}]
+const links = [{href:'/',label:'홈'},{href:'/about',label:'소개'},{href:'/projects',label:'프로젝트'},{href:'/learning',label:'기술·실습 기록'},{href:'/board',label:'게시판'}]
 export function MainNav() {
   const pathname = usePathname()
   return <nav aria-label="주 메뉴" className="main-nav">{links.map(l => {

@@ -1,0 +1,3 @@
+﻿.page:global(.editorial-page) { padding-top: clamp(25px, 3.7vw, 47px); }
+.heading:global(.editorial-heading) { padding-bottom: 15px; margin-bottom: 19px; }
+.heading h1 { margin-block: 7px 9px; }

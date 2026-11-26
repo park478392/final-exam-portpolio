@@ -5,10 +5,13 @@ import {
   type InferSchemaType,
   type Model,
 } from 'mongoose'
+import { boardCategories } from '@/lib/board-categories'
+
 const postSchema = new Schema(
   {
     title: { type: String, required: true, trim: true, maxlength: 120 },
     content: { type: String, required: true, maxlength: 10000 },
+    category: { type: String, enum: boardCategories.map(({ value }) => value) },
     author: { type: String, required: true, trim: true },
     authorId: { type: String, required: true },
     views: { type: Number, default: 0, min: 0 },

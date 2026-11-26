@@ -1,0 +1,33 @@
+﻿.trigger { margin-top: 10px; padding: 7px 12px; font-size: 13px; cursor: pointer; }
+.dialog {
+  width: min(632px, calc(100% - 24px));
+  height: min(90dvh, 900px);
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid var(--color-stroke);
+  border-radius: 8px;
+  background: var(--color-card);
+  color: inherit;
+}
+.dialog[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+.dialog::backdrop { background: rgb(24 17 14 / 75%); }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--color-card);
+  border-bottom: 1px solid var(--color-stroke);
+}
+.header h2 { margin: 0; font-size: 16px; font-weight: 750; line-height: 1.35; word-break: keep-all; }
+.header button { padding: 6px 10px; cursor: pointer; white-space: nowrap; }
+.imageArea { display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); place-items: center; padding: 14px; }
+.image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}

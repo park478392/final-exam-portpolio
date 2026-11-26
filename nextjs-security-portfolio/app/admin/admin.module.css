@@ -1,0 +1,39 @@
+.tableFrame {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 29rem;
+  border-collapse: collapse;
+  text-align: start;
+  font-size: 0.875rem;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-stroke);
+  overflow-wrap: anywhere;
+}
+
+.table th {
+  background: var(--color-surface);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table time {
+  white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .table th,
+  .table td {
+    padding-inline: 0.625rem;
+  }
+}

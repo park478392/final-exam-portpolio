@@ -1,0 +1,62 @@
+.account {
+  width: min(100% - 2rem, 460px);
+  margin-inline: auto;
+  padding-block: clamp(1.75rem, 4vw, 3rem) 3.5rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 5vw, 1.75rem);
+}
+
+.label {
+  display: grid;
+  gap: 0.375rem;
+  min-width: 0;
+  font-size: 0.875rem;
+}
+
+.form :global(.field),
+.form > :global(.button) {
+  height: 3rem;
+  padding-block: 0;
+  box-sizing: border-box;
+}
+
+.form :global(.field) {
+  font-size: 1rem;
+}
+
+.password {
+  position: relative;
+}
+
+.password :global(.field) {
+  padding-inline-end: 5rem;
+}
+
+.toggle {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0.5rem;
+  min-width: 3.75rem;
+  padding-inline: 0.4rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -3px;
+  border-radius: 4px;
+}
+
+.message {
+  padding: 0.75rem;
+  border: 1px solid var(--color-stroke);
+  border-radius: 5px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}

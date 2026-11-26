@@ -1,7 +1,7 @@
 'use client'
 
 import { useFormStatus } from 'react-dom'
-import { deletePostAction } from '@/lib/actions'
+import { deletePostAction } from '@/app/board/actions'
 
 function SubmitButton() {
   const { pending } = useFormStatus()
@@ -16,7 +16,6 @@ export function DeletePostButton({ postId }: { postId: string }) {
   return (
     <form
       action={deletePostAction}
-      className="mt-6"
       onSubmit={(event) => {
         if (!window.confirm('이 글을 삭제하시겠습니까? 삭제한 글은 복구할 수 없습니다.')) {
           event.preventDefault()

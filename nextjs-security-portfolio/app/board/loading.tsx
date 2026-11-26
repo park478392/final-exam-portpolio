@@ -1,13 +1,11 @@
 export default function Loading() {
   return (
-    <section className="wrap py-20">
-      <div className="h-10 w-52 rounded bg-slate-800 animate-pulse mb-10" />
-      {[1, 2, 3].map((i) => (
-        <div
-          key={i}
-          className="h-28 rounded-2xl bg-slate-800/70 animate-pulse mb-4"
-        />
-      ))}
+    <section className="wrap py-14 sm:py-20" aria-busy="true">
+      <p className="eyebrow">COMMUNITY</p>
+      <h1 className="mt-4 text-3xl font-bold sm:text-4xl">게시판</h1>
+      <div className="panel mt-7 min-h-64 p-5">
+        <p role="status" className="muted text-sm">게시글을 불러오는 중입니다.</p>
+      </div>
     </section>
   )
 }

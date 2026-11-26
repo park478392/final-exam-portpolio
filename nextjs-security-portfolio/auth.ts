@@ -1,16 +1,20 @@
-﻿import NextAuth from 'next-auth'
+import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
 import { connectDB } from '@/lib/mongodb'
 import { User } from '@/models/User'
 
-function getRole(email?: string | null): 'admin' | 'user' {
+export function getRole(email?: string | null): 'admin' | 'user' {
   const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase() || 'park478392@gmail.com'
   return adminEmail && email?.trim().toLowerCase() === adminEmail ? 'admin' : 'user'
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: 'jwt' },
+  // The classroom app shares localhost even though it uses a different port.
+  cookies: process.env.NODE_ENV === 'development' ? {
+    sessionToken: { name: 'portfolio.authjs.session-token', options: {} },
+  } : undefined,
   pages: { signIn: '/login' },
   providers: [Credentials({
     credentials: { email: {}, password: {} },
